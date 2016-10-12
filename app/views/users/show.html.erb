@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.full_name %>
+</p>
+
+<p>
+  <strong>Role:</strong>
+  <%= @user.role.titleize %>
+</p>
+
+<p>
+  <strong>Position:</strong>
+  <%= @user.position %>
+</p>
+
+<p>
+  <strong>Team name:</strong>
+  <%= @user.team_name %>
+</p>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %> | 
+<%= link_to 'View All PTO Requests', user_requests_path(@user) %> |
+<%= link_to 'Create New Request', new_user_request_path(@user) %>
+
+

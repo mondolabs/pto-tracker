@@ -1,0 +1,3 @@
+<%- if current_user && current_user.admin? %>
+	<a href='<%="/users/#{current_user.id}/requests"%>'>My Requests</a>
+<%- end %>	

@@ -1,3 +1,10 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+	devise_for :users
+	resources :departments 
+	resources :teams 
+	resources :users do
+  		resources :requests
+  		get "managed_requests" => 'requests#managed_requests', as: :managed_requests
+	end		  	
+	root "home#dashboard"
 end

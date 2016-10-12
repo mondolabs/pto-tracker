@@ -1,0 +1,22 @@
+body {
+	background-color: whitesmoke;
+    top: 0;
+    position: absolute;
+    width: 100%;
+}
+
+.navigation__global {
+	position: relative;
+    width: 100%;
+    top: 0;
+}
+
+.test {
+	height: 80px;
+	&.red {
+		background-color: firebrick;
+	}
+	&.blue {
+		background-color: steelblue;
+	}
+}

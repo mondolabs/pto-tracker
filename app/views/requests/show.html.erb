@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @request.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @request.end_date %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @request.status %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @request.note %>
+</p>
+
+<%= link_to 'Edit', edit_user_request_path(@user, @request) %> |
+<%= link_to 'Back', user_requests_path(@user) %>

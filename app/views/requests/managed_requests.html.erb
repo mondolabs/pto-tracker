@@ -1,0 +1,34 @@
+<% if !@managed_users.blank? %>
+	<table>
+		<thead>
+			<tr>
+				<th>User Name</th>
+				<th>Start Date</th>
+				<th>End Date</th>
+				<th>Status</th>
+				<th>Note</th>
+				<th colspan="3"></th>
+			</tr>
+		</thead>
+	  	<tbody>
+	<% for user in @managed_users %>
+	    <%- unless user.requests.blank? %>
+			<%- for request in user.requests %>
+
+		      <tr>
+		        <td><%= user.full_name %></td>
+		        <td><%= request.start_date %></td>
+		        <td><%= request.end_date %></td>
+		        <td><%= request.status %></td>
+		        <td><%= request.note %></td>
+		        <td><%= link_to 'Show', user_request_path(user, request) %></td>
+		        <td><%= link_to 'Edit', edit_user_request_path(user, request) %></td>
+		        <td><%= link_to 'Destroy', user_request_path(user, request), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		      </tr>
+	    	<%- end %>
+	    <%- end %>	
+	<% end %>
+		</tbody>
+	</table>
+<% end %>
+	

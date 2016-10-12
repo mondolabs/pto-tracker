@@ -1,0 +1,29 @@
+<nav class="navigation__global">
+	<div class="row">
+		
+		<div class="test col-lg-2">
+			<h3>
+				Mondo PTO Tracker
+			</h3>
+		</div>
+		<div class="test col-lg-5">
+			<%= render 'devise/menu/registration_items' %>
+  			<%= render 'devise/menu/login_items' %>
+		</div>
+
+		<div class="test col-lg-5">
+			<a href='<%="/"%>'>My Dashboard</a> |
+		  	<%- if current_user && current_user.admin? %>
+				<%= render 'global_partials/admin_navigation' %>
+			<%- elsif current_user && current_user.dept_head? %>
+				<%= render 'global_partials/dept_head_navigation' %>
+			<%- elsif current_user && current_user.manager? %>	
+				<%= render 'global_partials/manager_navigation' %>
+			<%- else %>	
+				<%= render 'global_partials/employee_navigation' %>
+			<%- end %>
+		</div>
+	</div>	
+</nav>
+
+
