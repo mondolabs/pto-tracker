@@ -20,6 +20,9 @@ gem 'awesome_print'
 gem 'devise', '~> 4.2.0'
 gem 'validates_email_format_of'
 
+# react on rails
+gem "react_on_rails", "~> 6"
+
 # Calendar
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
