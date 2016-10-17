@@ -14,7 +14,11 @@
 	<h4>
 		Manager: <%= User.find(current_user.team.manager_id).full_name %>
 	</h4>
-<%- end %>	
+<%- end %>
+
 
 <%= link_to 'Edit', edit_user_path(current_user) %> |
 <%= link_to 'Create New Request', new_user_request_path(current_user) %>
+
+
+<%= react_component("HelloWorldApp", props: @user_name, prerender: true) %>
