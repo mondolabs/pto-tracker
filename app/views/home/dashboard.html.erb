@@ -20,7 +20,6 @@
 <%- end %>
 
 
-<<<<<<< HEAD
 <%- if current_user.admin? %>
 	<%= link_to 'Edit', edit_user_path(current_user) %>
 <%- end %>
@@ -41,10 +40,9 @@
 <%# react_component("HelloWorldApp", props: @user_name_props, prerender: true) %>
 
 <!-- User.all.each { |u| u.update_attributes({team_id: 24}) if u.team_name == "San Francisco" && u.team_id.blank? } -->
-=======
 <%= link_to 'Edit', edit_user_path(current_user) %> |
 <%= link_to 'Create New Request', new_user_request_path(current_user) %>
 
 
 <%= react_component("HelloWorldApp", props: @user_name, prerender: true) %>
->>>>>>> 8192175974bda0aa9fc1cc0a1a70ddced75d3516
+
