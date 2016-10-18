@@ -8,6 +8,14 @@ class UsersController < ApplicationController
   end
 
   def show
+    sort_method_name = sort_requests_column
+    @all_requests = @user.requests.sort_by { |request| request.public_send(sort_method_name) }
+    @approved_requests = @user.requests.select(&:approved?)
+    @pending_requests = @user.requests.select(&:pending?)
+    @declined_requests  = @user.requests.select(&:declined?)
+    if sort_direction == "desc"
+      @all_requests = @all_requests.reverse!
+    end
   end
 
   def new
@@ -73,6 +81,10 @@ class UsersController < ApplicationController
   
   def sort_direction
     params[:direction] || "asc"
+  end
+
+  def sort_requests_column
+    params[:sort] || "start_date"
   end
 
   def set_user

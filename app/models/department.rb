@@ -5,5 +5,9 @@ class Department < ApplicationRecord
 	def department_head
 		User.find dept_head_id
 	end
+
+	def teams
+		teams = Team.where department_id: id
+	end
 	
 end

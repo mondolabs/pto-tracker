@@ -1,6 +1,9 @@
 <h1>
-	Dashboard	
+	<%= current_user.full_name %>'s Dashboard	
 </h1>
+<hr>
+<%= link_to 'Create New PTO Request', new_user_request_path(current_user) %>
+<hr>
 
 <h4>
 	Name: <%= current_user.full_name %>
@@ -16,5 +19,23 @@
 	</h4>
 <%- end %>	
 
-<%= link_to 'Edit', edit_user_path(current_user) %> |
-<%= link_to 'Create New Request', new_user_request_path(current_user) %>
+<%- if current_user.admin? %>
+	<%= link_to 'Edit', edit_user_path(current_user) %>
+<%- end %>
+
+<%- unless current_user.employee? || current_user.managed_teams && current_user.managed_teams.blank? %>
+	<hr>
+	<h4>
+		Managed Teams:
+	</h4>
+	<% for team in @managed_teams %>
+		<%= link_to "#{team.team_name}", team_path(team) %><br>
+	<% end %>
+	
+	<hr>
+<% end -%>
+
+
+<%# react_component("HelloWorldApp", props: @user_name_props, prerender: true) %>
+
+<!-- User.all.each { |u| u.update_attributes({team_id: 24}) if u.team_name == "San Francisco" && u.team_id.blank? } -->

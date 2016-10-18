@@ -48,17 +48,21 @@ class User < ApplicationRecord
 		end
 	end
 
-	def manged_teams
+	def managed_teams
 		managed_teams = []
-		case role		
-			when "admin"
+		if dept_head?
+			departments = Department.joins(:teams).where("manager_id = ?", id).uniq
+			departments.each do |department|
+				department.teams.each do |team|	
+					managed_teams << team
+				end	
+			end
+		else
+			unless employee?
 				managed_teams = Team.where(manager_id: self.id)
-			when "dept_head"
-				managed_teams = Team.where(manager_id: self.id)
-			when "manager"
-				managed_teams = Team.where(manager_id: self.id)
-		end
-		return manged_teams
+			end
+		end	
+		return managed_teams
 	end
 
 	def total_approved_pto

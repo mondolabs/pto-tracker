@@ -13,12 +13,12 @@
 
   <div class="field">
     <%= f.label :start_date %>
-    <%= f.date_select :start_date %>
+    <%= f.text_field :start_date, class: "datepicker", value: request.start_date && request.start_date.strftime("%m/%d/%Y") || "" %>
   </div>
 
   <div class="field">
     <%= f.label :end_date %>
-    <%= f.date_select :end_date %>
+    <%= f.text_field :end_date, class: "datepicker", value: request.end_date && request.end_date.strftime("%m/%d/%Y") || "" %>
   </div>
 
   <%- unless current_user.employee? %>

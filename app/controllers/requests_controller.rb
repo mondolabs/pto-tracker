@@ -2,8 +2,8 @@ class RequestsController < ApplicationController
   before_action :set_request, only: [:show, :edit, :update, :destroy]
 
   def index
-    @requests = Request.all
     @user = User.find params[:user_id]
+    @requests = @user.requests
   end
 
   def show
@@ -20,7 +20,7 @@ class RequestsController < ApplicationController
   end
 
   def create
-    @request = Request.new(request_params)
+    @request = Request.new(request_attrs(request_params))
     @user = User.find params[:user_id]
     @request.user = @user
     respond_to do |format|
@@ -31,12 +31,13 @@ class RequestsController < ApplicationController
         format.html { render :new }
         format.json { render json: @request.errors, status: :unprocessable_entity }
       end
-    end
+    end 
   end
 
   def update
+    @user = User.find params[:user_id]
     respond_to do |format|
-      if @request.update(request_params)
+      if @request.update(request_attrs(request_params))
         format.html { redirect_to user_request_path(@user, @request), notice: 'Request was successfully updated.' }
         format.json { render :show, status: :ok, location: @request }
       else
@@ -60,6 +61,19 @@ class RequestsController < ApplicationController
   end
 
   private
+    
+    def request_attrs(request_params)
+      request_attrs = request_params.clone
+      if !request_attrs["start_date"].blank?
+        request_attrs["start_date"] = Date.strptime(request_attrs["start_date"], "%m/%d/%Y")
+      end
+
+      if !request_attrs["end_date"].blank?
+        request_attrs["end_date"] = Date.strptime(request_attrs["end_date"], "%m/%d/%Y")
+      end
+      return request_attrs
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_request
       @request = Request.find(params[:id])

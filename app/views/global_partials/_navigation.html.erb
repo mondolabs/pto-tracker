@@ -11,18 +11,21 @@
   			<%= render 'devise/menu/login_items' %>
 		</div>
 
-		<div class="test col-lg-5">
-			<a href='<%="/"%>'>My Dashboard</a> |
-		  	<%- if current_user && current_user.admin? %>
-				<%= render 'global_partials/admin_navigation' %>
-			<%- elsif current_user && current_user.dept_head? %>
-				<%= render 'global_partials/dept_head_navigation' %>
-			<%- elsif current_user && current_user.manager? %>	
-				<%= render 'global_partials/manager_navigation' %>
-			<%- else %>	
-				<%= render 'global_partials/employee_navigation' %>
-			<%- end %>
-		</div>
+		<%- if current_user %>
+			<div class="test col-lg-5">
+				<a href='<%="/"%>'>My Dashboard</a> |
+				<%= link_to 'Create New PTO Request', new_user_request_path(current_user) %> | 
+			  	<%- if current_user && current_user.admin? %>
+					<%= render 'global_partials/admin_navigation' %>
+				<%- elsif current_user && current_user.dept_head? %>
+					<%= render 'global_partials/dept_head_navigation' %>
+				<%- elsif current_user && current_user.manager? %>	
+					<%= render 'global_partials/manager_navigation' %>
+				<%- else %>	
+					<%= render 'global_partials/employee_navigation' %>
+				<%- end %>
+			</div>
+		<% end -%>	
 	</div>	
 </nav>
 

@@ -10,5 +10,16 @@
   <%= User.find(@department.dept_head_id).full_name %>
 </p>
 
+<% if !@teams.blank? %>
+<h3>
+	Teams in <%= @department.department_name %> department:
+</h3>
+	<% for team in @teams %>
+		<%= link_to "#{team.team_name}", team_path(team) %><br>
+	<% end %>
+<% else %>
+	
+<% end %>
+
 <%= link_to 'Edit', edit_department_path(@department) %> |
 <%= link_to 'Back', departments_path %>

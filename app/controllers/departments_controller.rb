@@ -7,6 +7,7 @@ class DepartmentsController < ApplicationController
   end
 
   def show
+    @teams = Team.where( department_id: @department.id )
   end
 
   def new

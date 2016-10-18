@@ -49,6 +49,8 @@ GEM
       execjs
     awesome_print (1.7.0)
     bcrypt (3.1.11)
+    bootstrap-datepicker-rails (1.6.4.1)
+      railties (>= 3.0)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
@@ -100,6 +102,7 @@ GEM
       jsonapi-renderer (= 0.1.1.beta1)
     jsonapi-parser (0.1.1.beta2)
     jsonapi-renderer (0.1.1.beta1)
+    libv8 (5.3.332.38.1)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -112,6 +115,8 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
+    mini_racer (0.1.5)
+      libv8 (~> 5.3)
     minitest (5.9.1)
     momentjs-rails (2.15.1)
       railties (>= 3.1)
@@ -217,6 +222,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   awesome_print
+  bootstrap-datepicker-rails
   bootstrap-sass
   byebug
   coffee-rails (~> 4.2)
@@ -225,7 +231,9 @@ DEPENDENCIES
   fullcalendar-rails
   jbuilder (~> 2.5)
   jquery-rails
+  jquery-ui-rails
   listen (~> 3.0.5)
+  mini_racer
   momentjs-rails
   pg (~> 0.18)
   pry-rails

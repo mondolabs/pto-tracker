@@ -20,9 +20,61 @@
   <%= @user.team_name %>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %> | 
-<%= link_to 'View All PTO Requests', user_requests_path(@user) %> |
-<%= link_to 'Create New Request', new_user_request_path(@user) %>
+<%- if @all_requests.empty? %>
+  <p><%= "#{@user.full_name} "%> has no PTO requests.</p>
+<% else %>
+  <table>
+    <thead>
+    <h4>
+      All Requests
+    </h4>
+    <p>
+      Total Requests: <%= @all_requests.count || "0" %> 
+    </p>
+    <p>
+      Total Pending Requests: <%= @pending_requests.count || "0" %> 
+    </p>    
+    <p>
+      Total Aprroved Requests: <%= @approved_requests.count || "0" %> 
+    </p>    
+    <p>
+      Total Declined Requests: <%= @declined_requests.count || "0" %> 
+    </p>
+      <tr>
+        <th>
+            <%= sortable "Status" %>
+        </th>
+        <th>
+            <%= sortable "Start Date" %>
+        </th>
+        <th>
+            <%= sortable "End Date" %>
+        </th>
+        <th>
+            <%= sortable "Note" %>
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @all_requests.each_with_index do |request, i| %>
+        <tr>
+          <td><%= request.status.titleize %></td>
+          <td><%= request.start_date.strftime("%m/%d/%Y") %></td>
+          <td><%= request.end_date.strftime("%m/%d/%Y") %></td>
+          <td><%= request.note %></td>          
+          <td><%= link_to 'Edit Request', edit_user_request_path(@user, request ) %></td>
+          <td><%= link_to 'Delete Request', user_request_path(@user, request), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end-%>
 
 
+<%- if current_user.admin? %>
+	<%= link_to 'Edit', edit_user_path(@user) %> |
+<% end -%>
+<%- unless current_user.employee? %>
+	<%= link_to 'Back to all Users', users_path %>
+<% end -%>	

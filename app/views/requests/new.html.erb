@@ -1,5 +1,13 @@
 <h1>New Request</h1>
 
+<div id="flash_messages">
+	<%- if flash[:date_error] %>
+		<p class="error">
+			<%= flash[:date_error] %>
+		</p>
+	<%end -%>
+</div>
+
 <%= render 'form', request: @request %>
 
 <%= link_to 'Back', user_requests_path(@user) %>

@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   		get "managed_requests" => 'requests#managed_requests', as: :managed_requests
 	end		  	
 	root "home#dashboard"
+  	get 'hello_world', to: 'hello_world#index'
 end

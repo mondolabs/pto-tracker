@@ -10,5 +10,15 @@
   <%= @team.manager.full_name %>
 </p>
 
-<%= link_to 'Edit', edit_team_path(@team) %> |
-<%= link_to 'Back', teams_path %>
+<% if !@team_members.blank? %>
+	<% for team_member in @team_members %>
+		<%= link_to "#{team_member.full_name}", user_path(team_member) %><br>
+	<% end %>
+<% else %>
+	
+<% end %>
+
+<%- if current_user.admin? %>
+	<%= link_to 'Edit', edit_team_path(@team) %> |
+	<%= link_to 'All Teams', teams_path %>
+<% end -%>
