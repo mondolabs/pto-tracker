@@ -3,9 +3,9 @@ class User < ApplicationRecord
 	# :confirmable, :lockable, :timeoutable and :omniauthable
 	devise :database_authenticatable, :registerable,
 	     :recoverable, :rememberable, :trackable, :validatable
-	enum role: [:admin, :dept_head, :manager, :employee]
-	has_many :requests, dependent: :destroy
-	belongs_to :team
+	# enum role: [:admin, :dept_head, :manager, :employee]
+	# has_many :requests, dependent: :destroy
+	# belongs_to :team
 
   	ADMINS = User.admin
     DEPT_HEADS = User.admin | User.dept_head
