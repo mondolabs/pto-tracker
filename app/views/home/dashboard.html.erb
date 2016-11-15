@@ -21,7 +21,7 @@
 
 
 <%- if current_user.admin? %>
-	<%= link_to 'Edit', edit_user_path(current_user) %>
+	<%= link_to 'Edit Your Details', edit_user_path(current_user) %> |
 <%- end %>
 
 <%- unless current_user.employee? || current_user.managed_teams && current_user.managed_teams.blank? %>
@@ -40,9 +40,8 @@
 <%# react_component("HelloWorldApp", props: @user_name_props, prerender: true) %>
 
 <!-- User.all.each { |u| u.update_attributes({team_id: 24}) if u.team_name == "San Francisco" && u.team_id.blank? } -->
-<%= link_to 'Edit', edit_user_path(current_user) %> |
-<%= link_to 'Create New Request', new_user_request_path(current_user) %>
+<%= link_to 'Create New Request for PTO', new_user_request_path(current_user) %>
 
 
-<%= react_component("HelloWorldApp", props: @user_name, prerender: true) %>
+<%# react_component("HelloWorldApp", props: @user_name, prerender: true) %>
 

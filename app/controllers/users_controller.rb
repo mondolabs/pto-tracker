@@ -74,7 +74,6 @@ class UsersController < ApplicationController
     current_user.admin?
   end 
 
-
   def sort_column
     params[:sort] || "last_name"
   end
